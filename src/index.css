@@ -1,68 +1,82 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Mobile first approach */
+:root {
+  --header-height: 64px;
+  --sidebar-width: 250px;
+  --sidebar-collapsed-width: 80px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+  .ant-layout-sider {
+    position: fixed !important;
+    height: 100vh;
+    z-index: 999;
+    left: 0;
+    /* Auto collapse on mobile */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
-  a:hover {
-    color: #747bff;
+
+  .ant-layout-sider-collapsed {
+    transform: translateX(0);
   }
-  button {
-    background-color: #f9f9f9;
+
+  .ant-layout-content {
+    margin-left: 0 !important;
+    padding: 16px !important;
+  }
+
+  /* Adjust tables for mobile */
+  .ant-table {
+    overflow-x: auto;
+  }
+
+  /* Stack form items vertically */
+  .ant-form-item {
+    flex-direction: column;
+  }
+
+  /* Make buttons full width */
+  .ant-btn-block {
+    width: 100%;
+  }
+
+  /* Adjust card padding */
+  .ant-card-body {
+    padding: 12px;
+  }
+
+  /* Stack statistics vertically */
+  .ant-statistic {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .ant-layout-sider {
+    max-width: var(--sidebar-collapsed-width) !important;
+    min-width: var(--sidebar-collapsed-width) !important;
+    width: var(--sidebar-collapsed-width) !important;
+  }
+}
+
+/* Desktop styles */
+@media screen and (min-width: 1025px) {
+  .ant-layout-content {
+    margin: 24px;
   }
 }
